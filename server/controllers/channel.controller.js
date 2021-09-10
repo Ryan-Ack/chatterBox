@@ -26,10 +26,21 @@ module.exports = {
 
     // Update
     findOneAndUpdate: (req, res) => {
-        Channel.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true })
+        Channel.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true, new: true })
             .then(data => res.json(data))
             .catch(err => { res.status(400).json(err) })
     },
+    addMessage:(req, res)=> {
+        Channel.findOneAndUpdate({_id:req.params.id}, {$addToSet:{messages: req.body}}, {runValidators:true, useFindAndModify:false, new:true})
+            .then(data => res.json(data))
+            .catch(err => { res.status(400).json(err) })
+    },
+    deleteMessage:(req,res)=>{
+        Channel.findOneAndUpdate({_id:req.params.id}, {$pull:{messages:{_id: req.params.m_id}}})
+            .then(data => res.json(data))
+            .catch(err => { res.status(400).json(err) })
+    },
+
 
     // Delete
     delete: (req, res) => {

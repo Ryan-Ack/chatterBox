@@ -20,8 +20,17 @@ const MessageSchema = new mongoose.Schema({
     channel_id: {
         type:Number,
     },
+    createdAt:{
+        type:Date,
+        default: Date.now()
+    },
+    updatedAt: {
+        type:Date,
+        default:Date.now()
+    },
 
-}, { timestamps: true })
+})
+// }, { timestamps: true }) //cannot have timestamps or it causes problems
 
-const Message = mongoose.model("Message", MessageSchema);
-module.exports = Message
+// const Message = mongoose.model("Message", MessageSchema);
+module.exports = MessageSchema;

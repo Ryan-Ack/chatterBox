@@ -14,13 +14,22 @@ const AuthorSchema = new mongoose.Schema({
         // regex for email
     },
     author_password: {
+        //store a hashed password, never the real password
         type:String,
         required:[true, "Please enter a password."]
 
     },
     // author_password_confirm store hashed password?
 
-    // author_isAdmin?:  default = false;
+    //friends list
+        // $addToSet once friend request function is created.
+        //friends_list:[AuthorSchema]
+
+    //channel list
+        // $addToSet once friend request function is created.
+        // friends_list:[AuthorSchema]
+        // author_isAdmin?:  default = false;
+
 
     //relationship to MessageSchema
         //which message did they write?
